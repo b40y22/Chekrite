@@ -27,7 +27,7 @@ class UpdateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'taskId' => 'required|numeric',
+            'id' => 'required|numeric',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'importance' => 'in:high,middle,low',
@@ -37,7 +37,7 @@ class UpdateTaskRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'taskId.required' => trans('api.taskId.required'),
+            'id.required' => trans('api.taskId.required'),
             'title.required' => trans('api.title.required'),
             'title.max' => trans('api.title.max'),
             'importance' => trans('api.importance'),

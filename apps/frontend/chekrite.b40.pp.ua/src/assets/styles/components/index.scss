@@ -1,0 +1,36 @@
+.additional-information {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action {
+  cursor: pointer;
+  color: #868686;
+  margin-right: 10px;
+}
+.action:hover {
+  color: #383838;
+}
+.task-header {
+  display: flex;
+  justify-content: space-between;
+}
+.mark-importance {
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+.high {
+  border: 1px solid #b2b2b2;
+  background-color: #fd7d3b;
+}
+
+.middle {
+  border: 1px solid #b2b2b2;
+  background-color: #38a0f8;
+}
+
+.low {
+  border: 1px solid #b2b2b2;
+  background-color: #3bfd60;
+}

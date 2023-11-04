@@ -24,7 +24,13 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
     public function store(TaskStoreDto $taskStoreDto): mixed
     {
         try {
-            return $this->model::create(array_merge($taskStoreDto->toArray(), ['user_id' => 1]));
+            return $this->model::create(array_merge(
+                $taskStoreDto->toArray(),
+                [
+                    'user_id' => 1,
+                    'active' => true
+                ]
+            ));
         } catch (Exception $e) {
             Log::error('[TaskRepository:store] Can not store task');
 
@@ -38,7 +44,7 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
      */
     public function update(TaskUpdateDto $taskUpdateDto)
     {
-        return $this->model::where('id', $taskUpdateDto->taskId)
+        return $this->model::where('id', $taskUpdateDto->id)
             ->update($taskUpdateDto->forSave());
     }
 
@@ -48,7 +54,10 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
      */
     public function get(int $taskId): array
     {
-        return $this->model::where('id', $taskId)->get()->toArray();
+        return $this->model::where([
+            'id' => $taskId,
+            'active' => true
+        ])->get()->toArray();
     }
 
     /**
@@ -56,7 +65,15 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
      */
     public function list(): array
     {
-        return $this->model::all()->toArray();
+        return $this->model::with('user')->where('active', true)->get()->toArray();
+    }
+
+    /**
+     * @return array
+     */
+    public function listArchive(): array
+    {
+        return $this->model::with('user')->where('active', false)->get()->toArray();
     }
 
     /**
@@ -66,5 +83,27 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
     public function delete(int $taskId): bool
     {
         return (bool) $this->model::where('id', $taskId)->delete();
+    }
+
+    /**
+     * @param int $taskId
+     * @return bool
+     */
+    public function close(int $taskId): bool
+    {
+        return (bool) $this->model::where('id', $taskId)->update([
+            'active' => false
+        ]);
+    }
+
+    /**
+     * @param int $taskId
+     * @return bool
+     */
+    public function activate(int $taskId): bool
+    {
+        return (bool) $this->model::where('id', $taskId)->update([
+            'active' => true
+        ]);
     }
 }

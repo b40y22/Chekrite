@@ -1,13 +1,12 @@
 <?php
-declare(strict_types=1);
 
-namespace app\Http\Controllers\Tasks;
+namespace App\Http\Controllers\Tasks;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\TaskRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 
-class TasksListController extends Controller
+class TasksArchiveListController extends Controller
 {
     /**
      * @param TaskRepositoryInterface $taskRepository
@@ -21,6 +20,6 @@ class TasksListController extends Controller
      */
     public function __invoke(): JsonResponse
     {
-        return $this->responseSuccess($this->taskRepository->list());
+        return $this->responseSuccess($this->taskRepository->listArchive());
     }
 }

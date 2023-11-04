@@ -8,7 +8,7 @@ use App\Enums\Tasks\Importance;
 
 class TaskUpdateDto extends AbstractDto
 {
-    readonly public int $taskId;
+    readonly public int $id;
     readonly public string $title;
     readonly public ?string $description;
     readonly public string $importance;
@@ -18,7 +18,7 @@ class TaskUpdateDto extends AbstractDto
      */
     public function __construct(array $values)
     {
-        $this->taskId = $values['taskId'];
+        $this->id = $values['id'];
         $this->title = $values['title'];
         $this->description = $values['description'] ?? null;
         $this->importance = Importance::from($values['importance'])->value;

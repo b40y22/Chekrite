@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace app\Http\Controllers\Tasks;
+namespace App\Http\Controllers\Tasks;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\TaskRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 
-class TasksListController extends Controller
+class TaskCloseController extends Controller
 {
     /**
      * @param TaskRepositoryInterface $taskRepository
@@ -17,10 +17,17 @@ class TasksListController extends Controller
     ) {}
 
     /**
+     * @param int $taskId
      * @return JsonResponse
      */
-    public function __invoke(): JsonResponse
+    public function __invoke(int $taskId): JsonResponse
     {
-        return $this->responseSuccess($this->taskRepository->list());
+        $task = $this->taskRepository->close($taskId);
+
+        if (!$task) {
+            return $this->responseError([trans('api.notFound')], 404);
+        }
+
+        return $this->responseSuccess(['success']);
     }
 }

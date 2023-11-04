@@ -31,10 +31,26 @@ interface TaskRepositoryInterface extends AbstractRepositoryInterface
      */
     public function list(): array;
 
+    /**
+     * @return array
+     */
+    public function listArchive(): array;
 
     /**
      * @param int $taskId
      * @return bool
      */
     public function delete(int $taskId): bool;
+
+    /**
+     * @param int $taskId
+     * @return bool
+     */
+    public function close(int $taskId): bool;
+
+    /**
+     * @param int $taskId
+     * @return bool
+     */
+    public function activate(int $taskId): bool;
 }

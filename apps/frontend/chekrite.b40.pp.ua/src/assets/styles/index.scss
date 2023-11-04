@@ -1,0 +1,12 @@
+@import "common";
+@import "components";
+
+.dfr {
+  display: flex;
+  justify-content: center;
+}
+.dfc {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
