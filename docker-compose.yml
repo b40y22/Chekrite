@@ -57,7 +57,7 @@ services:
       - ./apps/backend:/var/www/html/backend
       - ./docker/php/.profile:/root
       - ./docker/php/script:/root/script
-    working_dir: /var/www/html/backend
+    working_dir: /var/www/html/backend/api.chekrite.b40.pp.ua
     command: bash -c "php-fpm"
     networks:
       web_network:
