@@ -1,6 +1,9 @@
 .idea/*
 /docker/mysql/db
-/apps/backend/api.chekrite.b40.pp.ua/storage
+/apps/backend/api.chekrite.b40.pp.ua/storage/framework/cache/
+/apps/backend/api.chekrite.b40.pp.ua/storage/framework/views/
+/apps/backend/api.chekrite.b40.pp.ua/storage/framework/sessions/
+/apps/backend/api.chekrite.b40.pp.ua/storage/logs/
 /apps/backend/api.chekrite.b40.pp.ua/vendor
 /apps/frontend/chekrite.b40.pp.ua/dist
 /apps/frontend/chekrite.b40.pp.ua/node_modules
