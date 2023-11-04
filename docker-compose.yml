@@ -74,7 +74,7 @@ services:
     volumes:
       - ./docker/nodejs/.profile:/root/
       - ./apps/frontend:/var/www/html/frontend
-    working_dir: /var/www/html/frontend
+    working_dir: /var/www/html/frontend/chekrite.b40.pp.ua
     networks:
       web_network:
         ipv4_address: 172.11.0.14
